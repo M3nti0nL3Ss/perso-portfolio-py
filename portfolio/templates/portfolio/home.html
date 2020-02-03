@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Ayoub Hebbaj</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'portfolio/assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'portfolio/assets/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><img src="{% static 'portfolio/images/avatar.jpg' %}" class="avatar"></li>
+							<li><h3><b>Ayoub Hebbaj</b></h3></li>
+							<li><a href="#intro">Welcome</a></li>
+							<li><a href="#one">Who we are</a></li>
+							<li><a href="#two">What we do</a></li>
+							<li><a href="#three">Get in touch</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+				
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<div class="menu">
+					<i class="fa fa-bars"></i>
+				</div>
+				<!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up page1">
+						<div class="inner">
+							<h1>Ayoub Hebbaj</h1>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							</p>
+							<ul class="actions">
+								<li><a href="#one" class="button scrolly">Projects</a></li>
+								<li><a href="/blog" class="button scrolly">Blog</a></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- One -->
+					<section id="one" class="wrapper style2 spotlights page2">
+						{% for project in projects %}
+						<section>
+							{% if project.url %}
+							<a href="{{ project.url }}" class="image" target="_blank">
+								<img src="{{ project.image.url }}" alt="" data-position="center center"/>
+							</a>
+							{% else %}
+							<a class="image"><img src="{{ project.image.url }}" alt="" data-position="center center"/></a>
+							 {% endif %}
+							<div class="content">
+								<div class="inner">
+									<h2>{{ project.title }}</h2>
+									<p>{{ project.description|striptags }}</p>
+									{% if project.url %}
+									<ul class="actions">
+										<li><a href="{{ project.url }}" class="button" target="_blank">View</a></li>
+									</ul>
+									{% endif %}
+								</div>
+							</div>
+						</section>
+						{% endfor %}
+					</section>
+
+				<!-- Two -->
+					<section id="two" class="wrapper style3 fade-up page3">
+						<div class="inner">
+							<h2>What we do</h2>
+							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
+							<div class="features">
+								{% for skill in skills %}
+								<section>
+									<i class="icon solid major {{ skill.code }}"></i>
+									<h3>{{ skill.title }}</h3>
+									<p>{{ skill.description }}</p>
+									<div class="progress_container">
+										<div class="progress progress-danger
+										     progress-striped active">
+										  <div class="bar"
+										       style="width: {{ skill.progress }}%;">{{ skill.progress }}%</div>
+										  </div>
+
+										</div>
+								</section>
+								{% endfor %}
+							</div>
+							<ul class="actions">
+								<li><a href="generic.html" class="button">Learn more</a></li>
+							</ul>
+						</div>
+					</section>
+
+
+
+				<!-- Three -->
+					<section id="three" class="wrapper style1 fade-up page3">
+						<div class="inner">
+							<h2>Get in touch</h2>
+							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
+							<div class="split style1">
+								<section> 
+									<form method="POST" id="sent">{% csrf_token %}
+										<div class="fields">
+											<div class="field half">
+												<label for="name">Name</label>
+												{{ form.name }}
+											</div>
+											<div class="field half">
+												<label for="email">Email</label>
+												{{ form.email }}
+											</div>
+											<div class="field">
+												<label for="message">Message</label>
+												{{ form.message }}
+											</div>
+										</div>
+										<ul class="actions">
+											<li><button type='submit' class="button submit">Send Message</button></li>
+										</ul>
+									</form>
+								</section>
+								<section>
+									<ul class="contact">
+										<li>
+											<h3>Email</h3>
+											<a href="">Hebbaj@th3md.com</a>
+										</li>
+										<li>
+											<h3>Phone</h3>
+											<span>(212) 615-092333</span>
+										</li>
+										<li>
+											<h3>Social</h3>
+											<ul class="icons">
+												<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
+												<li><a href="https://www.facebook.com/M3nti0nl3ss" class="icon brands fa-facebook-f" target="_blank">
+													<span class="label">Facebook</span></a></li>
+												<li><a href="https://github.com/M3nti0nl3ss" class="icon brands fa-github" target="_blank">
+													<span class="label">GitHub</span></a></li>
+												<li><a href="https://www.instagram.com/ayoub.hebbaj" class="icon brands fa-instagram" target="_blank">
+													<span class="label">Instagram</span></a></li>
+												<li><a href="https://linkedin.com/in/ayoub-hebbaj" class="icon brands fa-linkedin-in" target="_blank">
+													<span class="label">LinkedIn</span></a></li>
+												<li><a href="https://dev.to/m3nti0nl3ss" class="icon brands fab fa-dev" target="_blank">
+													<span class="label">LinkedIn</span></a></li>
+											</ul>
+										</li>
+									</ul>
+								</section>
+							</div>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; HEBBAJ. All rights reserved.</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'portfolio/assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'portfolio/assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'portfolio/assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'portfolio/assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'portfolio/assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'portfolio/assets/js/util.js' %}"></script>
+			<script src="{% static 'portfolio/assets/js/main.js' %}"></script>
+			<script src="{% static 'portfolio/assets/js/scripts.js' %}"></script>
+			{% if msg_sent %}
+			<div class="notify none do-show" data-notification-status="success">Your Message Was Sent Successefully :D</div>
+			<script>
+			noti=get(".notify");
+			noti.classList.remove("none");
+			noti.classList.add("top-right");
+			</script>
+			{% endif %}
+
+	</body>
+</html>
