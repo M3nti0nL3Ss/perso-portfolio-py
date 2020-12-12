@@ -6,6 +6,8 @@ from contact.forms import ContactForm
 
 
 class Home(TemplateView):
+	def get_queryset(self):
+		return Skill.objects.all()
 	template_name = "portfolio/home.html"
 	projects = Project.objects.all()
 	skills = Skill.objects.all()
