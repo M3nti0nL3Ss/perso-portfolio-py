@@ -21,7 +21,8 @@ class ContactForm(forms.ModelForm):
 	        widget=forms.Textarea(
 	            attrs={
 	                'id': 'message',
-	                "rows": '5'
+	                "rows": '5',
+			"style": 'resize: none;'
 	                }
 	            )
 	)
