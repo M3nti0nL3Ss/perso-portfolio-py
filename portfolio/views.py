@@ -12,6 +12,8 @@ class Home(TemplateView):
 	projects = Project.objects.all()
 	skills = Skill.objects.all()
 	form = ContactForm()
+	context = {'projects': projects, 
+	    	'skills':skills}
 	msg_sent = False
 	def get(self, request, *args, **kwargs):
 	    if 'sent' in request.session:
